@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background: #333;
+  --color-form: #222;
+  --color-main: #00ffff;
+  --radius-border: 10px;
+  --text-title: 26px;
+  --text-title-md: 20px;
+  --text-desc: 18px;
+  --text-desc-md: 16px;
+  --font-font: sans-serif;
+}
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-white font-font;
+  }
+}
