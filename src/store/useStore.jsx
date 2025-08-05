@@ -1,16 +1,18 @@
 import { create } from 'zustand'
 
 export const useStore = create((set) => ({
-  cars: [],
+  cars: JSON.parse(localStorage.getItem('cars')) || [],
 
   getInfo: (payload) =>
     set((state) => {
-      const ex = state.cars.some((item) => item.id === payload.id)
-      if (ex) {
-        return { cars: state.cars.filter((item) => item.id !== payload.id) }
+      const exist = state.cars.some((item) => item.id === payload.id)
+      let store = []
+      if (exist) {
+        store = state.cars.filter((item) => item.id !== payload.id)
       } else {
-        return { cars: [...state.cars, payload] }
+        store = [...state.cars, payload]
       }
+      localStorage.setItem('cars', JSON.stringify(store))
+      return { cars: store }
     }),
-  renameInfo: (payload) => set((state) => {}),
 }))
